@@ -7,7 +7,7 @@ Group:		Development/Languages/Java
 URL:		http://www.javaexchange.com/
 Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
 # Source0-md5:	9e433e92a3b613678c8f8e49d299e864
-Source1:	ftp://javaexchange.com/javaexchange/DbConnectionBroker.java
+Source1:	ftp://javaexchange.com/javaexchange/%{name}.java
 # Source1-md5:	215ef43a308e40a38fb12d749a601a71
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
@@ -15,6 +15,7 @@ BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
 Obsoletes:	java-DbConnectionBroker
 BuildArch:	noarch
+ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
