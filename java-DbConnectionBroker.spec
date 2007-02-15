@@ -8,7 +8,7 @@ URL:		http://www.javaexchange.com/
 Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
 # Source0-md5:	9e433e92a3b613678c8f8e49d299e864
 Source1:	ftp://javaexchange.com/javaexchange/DbConnectionBroker.java
-# Source1-md5:	9dd0e5865c5cfccc127a11a19b4afc18
+# Source1-md5:	215ef43a308e40a38fb12d749a601a71
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
