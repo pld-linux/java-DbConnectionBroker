@@ -31,7 +31,7 @@ background housekeeping thread.
 DbConnectionBroker jest napisanym w Javie pakietem do obsługi wielu
 konkurencyjnych połączeń z bazą danych. DbConnectionBroker tworzy
 pośrednik z bardzo prostym interfejsem do wydawania i zwracania
-połączeń bazodanowych prznależnych do konfigurowalnej puli połączeń.
+połączeń bazodanowych przynależnych do konfigurowalnej puli połączeń.
 Pośrednik tworzy dynamiczną pulę połączeń i zarządza nią za pomocą
 działającego w tle wątku porządkującego.
 
