@@ -1,4 +1,5 @@
-Summary:	DbConnectionBroker
+Summary:	DbConnectionBroker - database connection pool management
+Summary(pl.UTF-8):	DbConnectionBroker - zarządzanie pulą połączeń bazodanowych
 Name:		DbConnectionBroker
 Version:	1.0.13
 Release:	0.1
@@ -26,14 +27,25 @@ connections from a configurable pool of connections. The Broker
 creates a dynamic pool of connections and manages them for you with a
 background housekeeping thread.
 
+%description -l pl.UTF-8
+DbConnectionBroker jest napisanym w Javie pakietem do obsługi wielu
+konkurencyjnych połączeń z bazą danych. DbConnectionBroker tworzy
+pośrednik z bardzo prostym interfejsem do wydawania i zwracania
+połączeń bazodanowych prznależnych do konfigurowalnej puli połączeń.
+Pośrednik tworzy dynamiczną pulę połączeń i zarządza nią za pomocą
+działającego w tle wątku porządkującego.
+
 %package javadoc
 Summary:	Online manual for DbConnectionBroker
-Summary(pl):	Dokumentacja online do DbConnectionBroker
+Summary(pl.UTF-8):	Dokumentacja online do DbConnectionBroker
 Group:		Documentation
 Requires:	jpackage-utils
 
 %description javadoc
-Documentation for DbConnectionBroker
+Documentation for DbConnectionBroker.
+
+%description -l pl.UTF-8 javadoc
+Dokumentacja do DbConnectionBroker.
 
 %prep
 %setup -qc
