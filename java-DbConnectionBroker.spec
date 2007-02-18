@@ -5,11 +5,11 @@ Version:	1.0.13
 Release:	0.1
 License:	OSS
 Group:		Development/Languages/Java
-URL:		http://www.javaexchange.com/
 Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
 # Source0-md5:	9e433e92a3b613678c8f8e49d299e864
 Source1:	ftp://javaexchange.com/javaexchange/%{name}.java
 # Source1-md5:	215ef43a308e40a38fb12d749a601a71
+URL:		http://www.javaexchange.com/
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
@@ -67,8 +67,8 @@ ln -s DbConnectionBroker-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionB
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr doc/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}
-cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,7 +85,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %{_javadir}/*.jar
-%{_examplesdir}/*
+%{_examplesdir}/%{name}-%{version}
 
 %files javadoc
 %defattr(644,root,root,755)
