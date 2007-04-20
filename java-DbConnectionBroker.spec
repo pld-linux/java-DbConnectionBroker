@@ -3,7 +3,7 @@ Summary:	DbConnectionBroker - database connection pool management
 Summary(pl.UTF-8):	DbConnectionBroker - zarządzanie pulą połączeń bazodanowych
 Name:		DbConnectionBroker
 Version:	1.0.13
-Release:	3
+Release:	5
 License:	OSS
 Group:		Development/Languages/Java
 Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
