@@ -1,8 +1,9 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	DbConnectionBroker - database connection pool management
 Summary(pl.UTF-8):	DbConnectionBroker - zarządzanie pulą połączeń bazodanowych
 Name:		DbConnectionBroker
 Version:	1.0.13
-Release:	0.1
+Release:	3
 License:	OSS
 Group:		Development/Languages/Java
 Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
@@ -11,9 +12,11 @@ Source1:	ftp://javaexchange.com/javaexchange/%{name}.java
 # Source1-md5:	215ef43a308e40a38fb12d749a601a71
 URL:		http://www.javaexchange.com/
 BuildRequires:	jdk
+BuildRequires:	rpm-javaprov
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
+Provides:	java-DbConnectionBroker
 Obsoletes:	java-DbConnectionBroker
 BuildArch:	noarch
 ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664}
@@ -44,7 +47,7 @@ Requires:	jpackage-utils
 %description javadoc
 Documentation for DbConnectionBroker.
 
-%description -l pl.UTF-8 javadoc
+%description javadoc -l pl.UTF-8
 Dokumentacja do DbConnectionBroker.
 
 %prep
@@ -66,6 +69,7 @@ ln -s DbConnectionBroker-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionB
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr doc/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -74,13 +78,7 @@ cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-rm -f %{_javadocdir}/%{name}
-ln -s %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ "$1" = "0" ]; then
-	rm -f %{_javadocdir}/%{name}
-fi
+ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
