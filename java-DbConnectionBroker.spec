@@ -12,14 +12,14 @@ Source1:	ftp://javaexchange.com/javaexchange/%{name}.java
 # Source1-md5:	215ef43a308e40a38fb12d749a601a71
 URL:		http://www.javaexchange.com/
 BuildRequires:	jdk
-BuildRequires:	rpm-javaprov
 BuildRequires:	jpackage-utils
+BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	jpackage-utils
 Requires:	jre
 Provides:	java-DbConnectionBroker
 Obsoletes:	java-DbConnectionBroker
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,7 +57,7 @@ rm -f com/javaexchange/dbConnectionBroker/DbConnectionBroker.class
 
 %build
 %javac com/javaexchange/dbConnectionBroker/DbConnectionBroker.java
-jar cvf DbConnectionBroker.jar com/javaexchange/dbConnectionBroker/DbConnectionBroker.class
+%jar cvf DbConnectionBroker.jar com/javaexchange/dbConnectionBroker/DbConnectionBroker.class
 
 %install
 rm -rf $RPM_BUILD_ROOT
