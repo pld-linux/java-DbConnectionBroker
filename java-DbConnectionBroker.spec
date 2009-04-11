@@ -1,14 +1,15 @@
 %include	/usr/lib/rpm/macros.java
+%define		srcname		DbConnectionBroker
 Summary:	DbConnectionBroker - database connection pool management
 Summary(pl.UTF-8):	DbConnectionBroker - zarządzanie pulą połączeń bazodanowych
-Name:		DbConnectionBroker
+Name:		java-%{srcname}
 Version:	1.0.13
 Release:	5
 License:	OSS
 Group:		Development/Languages/Java
-Source0:	ftp://javaexchange.com/javaexchange/%{name}%{version}.tar
+Source0:	ftp://javaexchange.com/javaexchange/%{srcname}%{version}.tar
 # Source0-md5:	9e433e92a3b613678c8f8e49d299e864
-Source1:	ftp://javaexchange.com/javaexchange/%{name}.java
+Source1:	ftp://javaexchange.com/javaexchange/%{srcname}.java
 # Source1-md5:	215ef43a308e40a38fb12d749a601a71
 URL:		http://www.javaexchange.com/
 BuildRequires:	jdk
@@ -17,8 +18,8 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
 Requires:	jre
-Provides:	java-DbConnectionBroker
-Obsoletes:	java-DbConnectionBroker
+Provides:	DbConnectionBroker
+Obsoletes:	DbConnectionBroker
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,6 +51,18 @@ Documentation for DbConnectionBroker.
 %description javadoc -l pl.UTF-8
 Dokumentacja do DbConnectionBroker.
 
+%package demo
+Summary:	Demo for %{srcname}
+Summary(pl.UTF-8):	Pliki demonstracyjne dla pakietu %{srcname}
+Group:		Documentation
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description demo
+Demonstrations and samples for %{srcname}.
+
+%description demo -l pl.UTF-8
+Pliki demonstracyjne i przykłady dla pakietu %{srcname}.
+
 %prep
 %setup -qc
 cp %{SOURCE1} com/javaexchange/dbConnectionBroker
@@ -67,24 +80,28 @@ cp -a DbConnectionBroker.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionBroker-%{ver
 ln -s DbConnectionBroker-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionBroker.jar
 
 # javadoc
-install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr doc/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+cp -pr doc/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{srcname}-%{version}
+cp -a Examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{srcname}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -sf %{name}-%{version} %{_javadocdir}/%{name}
+ln -sf %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
 %{_javadir}/*.jar
-%{_examplesdir}/%{name}-%{version}
 
 %files javadoc
 %defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
+%{_javadocdir}/%{srcname}-%{version}
+%ghost %{_javadocdir}/%{srcname}
+
+%files demo
+%defattr(644,root,root,755)
+%{_examplesdir}/%{srcname}-%{version}
