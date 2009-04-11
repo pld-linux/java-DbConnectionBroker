@@ -1,7 +1,7 @@
 %include	/usr/lib/rpm/macros.java
-%define		srcname		DbConnectionBroker
-Summary:	DbConnectionBroker - database connection pool management
-Summary(pl.UTF-8):	DbConnectionBroker - zarządzanie pulą połączeń bazodanowych
+%define		srcname		%{srcname}
+Summary:	%{srcname} - database connection pool management
+Summary(pl.UTF-8):	%{srcname} - zarządzanie pulą połączeń bazodanowych
 Name:		java-%{srcname}
 Version:	1.0.13
 Release:	5
@@ -40,16 +40,16 @@ Pośrednik tworzy dynamiczną pulę połączeń i zarządza nią za pomocą
 działającego w tle wątku porządkującego.
 
 %package javadoc
-Summary:	Online manual for DbConnectionBroker
-Summary(pl.UTF-8):	Dokumentacja online do DbConnectionBroker
+Summary:	Online manual for %{srcname}
+Summary(pl.UTF-8):	Dokumentacja online do %{srcname}
 Group:		Documentation
 Requires:	jpackage-utils
 
 %description javadoc
-Documentation for DbConnectionBroker.
+Documentation for %{srcname}.
 
 %description javadoc -l pl.UTF-8
-Dokumentacja do DbConnectionBroker.
+Dokumentacja do %{srcname}.
 
 %package demo
 Summary:	Demo for %{srcname}
@@ -65,19 +65,19 @@ Pliki demonstracyjne i przykłady dla pakietu %{srcname}.
 
 %prep
 %setup -qc
-cp %{SOURCE1} com/javaexchange/dbConnectionBroker
-rm -f com/javaexchange/dbConnectionBroker/DbConnectionBroker.class
+cp %{SOURCE1} com/javaexchange/%{srcname}
+rm -f com/javaexchange/%{srcname}/%{srcname}.class
 
 %build
-%javac com/javaexchange/dbConnectionBroker/DbConnectionBroker.java
-%jar cvf DbConnectionBroker.jar com/javaexchange/dbConnectionBroker/DbConnectionBroker.class
+%javac com/javaexchange/%{srcname}/%{srcname}.java
+%jar cvf %{srcname}.jar com/javaexchange/%{srcname}/%{srcname}.class
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_javadir}
-cp -a DbConnectionBroker.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionBroker-%{version}.jar
-ln -s DbConnectionBroker-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/DbConnectionBroker.jar
+cp -a %{srcname}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
+ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
