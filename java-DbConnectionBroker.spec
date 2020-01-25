@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.java
 %define		srcname		DbConnectionBroker
 Summary:	%{srcname} - database connection pool management
 Summary(pl.UTF-8):	%{srcname} - zarządzanie pulą połączeń bazodanowych
